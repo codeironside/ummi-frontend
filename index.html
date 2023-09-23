@@ -370,46 +370,259 @@ Password checker</h1>		</div>
 					</div>
 		</div>
 							</div>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-63227a8 elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="63227a8" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1d7048a" data-id="1d7048a" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-								<div class="elementor-element elementor-element-b4675b7 elementor-widget elementor-widget-heading" data-id="b4675b7" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">check your password has been breached and the strength<br> </h2>		</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f245236" data-id="f245236" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-								<div class="elementor-element elementor-element-355bb6d elementor-widget elementor-widget-back-newsletter" data-id="355bb6d" data-element_type="widget" data-widget_type="back-newsletter.default">
-				<div class="elementor-widget-container">
-			            <div class="back-newsletter-form"><script>(function() {
-	window.mc4wp = window.mc4wp || {
-		listeners: [],
-		forms: {
-			on: function(evt, cb) {
-				window.mc4wp.listeners.push(
-					{
-						event   : evt,
-						callback: cb
-					}
-				);
-			}
-		}
-	}
-})();
-</script><!-- Mailchimp for WordPress v4.9.7 - https://wordpress.org/plugins/mailchimp-for-wp/ --><form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1064" method="post" data-id="1064" data-name="" ><div class="mc4wp-form-fields"><div>
-<input type="email" name="EMAIL" placeholder="Your password" required />
-<input type="submit" value="check" />
-</div>
-</div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1694714728" /><input type="hidden" name="_mc4wp_form_id" value="1064" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" /><div class="mc4wp-response"></div></form><!-- / Mailchimp for WordPress Plugin --></div>
-        		</div>
-				</div>
-					</div>
-		</div>
-							</div>
-		</section>
+                            <section class="elementor-section elementor-top-section elementor-element elementor-element-63227a8 elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="63227a8" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
+                                <div class="elementor-container elementor-column-gap-default">
+                                  <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1d7048a" data-id="1d7048a" data-element_type="column">
+                                    <div class="elementor-widget-wrap elementor-element-populated">
+                                      <div class="elementor-element elementor-element-b4675b7 elementor-widget elementor-widget-heading" data-id="b4675b7" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                          <h2 class="elementor-heading-title elementor-size-default">Check your password has been breached and the strength<br></h2>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <style>
+                                    /* Adjust the container to control layout */
+                                    .password-container {
+                                      display: flex;
+                                      flex-direction: column;
+                                      align-items: center; /* Center horizontally within the column */
+                                      text-align: center; /* Center text within the column */
+                                    }
+                                  
+                                    /* Style the input fields and button */
+                                    .password-container input[type="password"],
+                                    .password-container input[type="text"],
+                                    .password-container input[type="submit"] {
+                                      width: 100%; /* Make the inputs and button full width */
+                                      margin-bottom: 10px; /* Adjust the margin as needed */
+                                      padding: 5px;
+                                    }
+                                  
+                                    .password-container input[type="submit"] {
+                                      background-color: #0073e6; /* Customize the button background color */
+                                      color: #fff; /* Customize the button text color */
+                                      border: none;
+                                      padding: 10px 20px;
+                                      cursor: pointer;
+                                    }
+                                  
+                                    .password-container input[type="submit"]:hover {
+                                      background-color: #0057ad; /* Customize the button hover color */
+                                    }
+                                  
+                                    /* Adjust the password strength message styles */
+                                    #password-strength {
+                                      margin-top: 10px;
+                                      font-size: 16px;
+                                    }
+                                  </style>
+                                  
+                                  
+                                  <!-- Your existing HTML code wrapped in a container -->
+                                  <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f245236" data-id="f245236" data-element_type="column">
+                                    <div class="elementor-widget-wrap elementor-element-populated">
+                                      <div class="elementor-element elementor-element-355bb6d elementor-widget elementor-widget-back-newsletter" data-id="355bb6d" data-element_type="widget" data-widget_type="back-newsletter.default">
+                                        <div class="elementor-widget-container">
+                                          <div class="back-newsletter-form password-container">
+                                            <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1064" method="post" data-id="1064" data-name="">
+                                              <div class="mc4wp-form-fields">
+                                                <div>
+                                                  <input type="password" id="password" name="PASSWORD" placeholder="Your password" required onkeyup="checkPasswordStrength();" />
+                                                  <input type="button" value="Check" onclick="showModal();" />
+                                                </div>
+                                              </div>
+                                              <label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label>
+                                              <input type="hidden" name="_mc4wp_timestamp" value="1694714728" />
+                                              <input type="hidden" name="_mc4wp_form_id" value="1064" />
+                                              <input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
+                                              <div class="mc4wp-response"></div>
+                                            </form>
+                                            <div id="password-strength"></div>
+                                            <!-- Modal -->
+                                            <div id="myModal" class="modal">
+                                              <div class="modal-content">
+                                                <p id="modalMessage"></p>
+                                              </div>
+                                            </div>
+                              
+                                            <script>
+                                              function checkPasswordStrength() {
+                                                var password = document.getElementById("password").value;
+  var strength = 0;
+  var message = "";
+  var fontSize = "";
+
+  // Use regular expressions to check password strength
+  var regexes = [
+    /[A-Z]/,      // Uppercase letters
+    /[a-z]/,      // Lowercase letters
+    /[0-9]/,      // Numbers
+    /[^A-Za-z0-9]/, // Special characters
+  ];
+
+  for (var i = 0; i < regexes.length; i++) {
+    if (regexes[i].test(password)) {
+      strength++;
+    }
+  }
+
+  if (password.length >= 10) {
+    strength++;
+  }
+
+  // Assign message, color, and fontSize based on strength
+  switch (strength) {
+    case 0:
+      message = "Weak";
+      fontSize = "16px";
+      break;
+    case 1:
+      message = "Commo";
+      fontSize = "16px";
+      break;
+    case 2:
+      message = "Medium";
+      fontSize = "20px";
+      break;
+    case 3:
+    case 4:
+      message = "Strong";
+      fontSize = "24px";
+      break;
+    default:
+      message = "Strong";
+      fontSize = "24px";
+      break;
+  }
+
+  var passwordStrengthElement = document.getElementById("password-strength");
+  passwordStrengthElement.textContent = "Password Strength: " + message;
+  passwordStrengthElement.style.color = getColorForStrength(strength);
+  passwordStrengthElement.style.fontSize = fontSize;
+}
+
+function getColorForStrength(strength) {
+  switch (strength) {
+    case 0:
+      return "velvet";
+    case 1:
+      return "orange";
+    case 2:
+      return "yellow";
+    case 3:
+    case 4:
+      return "red";
+    default:
+      return "red";
+  }
+                              
+                                                // Replace the following line with code to randomly select a message
+                                                var messages = [
+                                                  "Your password has been compromised",
+                                                  "Your password hasn't been compromised, please change the password",
+                                                  "Your password hasn't been compromised, but there are attempts to crack it, be aware or enable multi-factor authentication, such as 2FA etc"
+                                                ];
+                                                var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                              
+                                                showModal(randomMessage);
+                                              }
+                              
+                                              function showModal(message) {
+                                                var modal = document.getElementById("myModal");
+                                                var modalMessage = document.getElementById("modalMessage");
+                              
+                                                modalMessage.textContent = message;
+                                                modal.style.display = "block";
+                              
+                                                // Animate the background color
+                                                document.body.style.animation = "backgroundAnimation 2s infinite";
+                                              }
+                                            </script>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+                              
+                            
+                              <script>
+ function checkPasswordStrength() {
+  var password = document.getElementById("password").value;
+  var strength = 0;
+  var message = "";
+  var fontSize = "";
+
+  // Use regular expressions to check password strength
+  var regexes = [
+    /[A-Z]/,      // Uppercase letters
+    /[a-z]/,      // Lowercase letters
+    /[0-9]/,      // Numbers
+    /[^A-Za-z0-9]/, // Special characters
+  ];
+
+  for (var i = 0; i < regexes.length; i++) {
+    if (regexes[i].test(password)) {
+      strength++;
+    }
+  }
+
+  if (password.length >= 12) {
+    strength++;
+  }
+
+  // Assign message, color, and fontSize based on strength
+  switch (strength) {
+    case 0:
+      message = "Weak";
+      fontSize = "16px";
+      break;
+    case 1:
+      message = "Common";
+      fontSize = "18px";
+      break;
+    case 2:
+      message = "Medium";
+      fontSize = "20px";
+      break;
+    case 3:
+    case 4:
+      message = "Strong";
+      fontSize = "24px";
+      break;
+    default:
+      message = "Strong";
+      fontSize = "24px";
+      break;
+  }
+
+  var passwordStrengthElement = document.getElementById("password-strength");
+  passwordStrengthElement.textContent = "Password Strength: " + message;
+  passwordStrengthElement.style.color = getColorForStrength(strength);
+  passwordStrengthElement.style.fontSize = fontSize;
+  passwordStrengthElement.style.fontWeight = "Bold"
+}
+
+function getColorForStrength(strength) {
+  switch (strength) {
+    case 0:
+      return "red";
+    case 1:
+      return "orange";
+    case 2:
+      return "yellow";
+    case 3:
+    case 4:
+      return "green";
+    default:
+      return "green";
+  }
+}
+
+
+                              </script>
 							</div>
 		
  <!-- start scrollUp  -->
